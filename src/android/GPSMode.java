@@ -21,9 +21,9 @@ public class GPSMode extends CordovaPlugin {
 
 	@Override
 	public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
-		context=this.cordova.getActivity().getApplicationContext();
-		Toast.makeText(context,"GPSMODE",Toast.LENGTH_SHORT).show();
 		try{
+			context=this.cordova.getActivity().getApplicationContext();
+			Toast.makeText(context,"GPSMODE",Toast.LENGTH_SHORT).show();
 			if(ACTION_ON.equalsIgnoreCase(action)){
 				turnGPSOn();
 			}else if(ACTION_OFF.equalsIgnoreCase(action)){
