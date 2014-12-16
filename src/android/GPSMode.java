@@ -39,7 +39,6 @@ public class GPSMode extends CordovaPlugin {
 					callbackContext.success("GPS is On");
 	 	 			return true;
 				}
-				+
 			}
 			callbackContext.success();
 	 	 	return true;
