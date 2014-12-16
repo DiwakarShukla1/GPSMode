@@ -16,6 +16,7 @@ import android.widget.Toast;
 public class GPSMode extends CordovaPlugin {
 	public static final String ACTION_ON = "on";
 	public static final String ACTION_OFF = "off"; 
+	public static final String ACTION_ISGPSON = "isGPSOn"; 
 	Context context=null;
 
 	@Override
@@ -26,6 +27,14 @@ public class GPSMode extends CordovaPlugin {
 				turnGPSOn();
 			}else if(ACTION_OFF.equalsIgnoreCase(action)){
 				turnGPSOff();
+			}else if(ACTION_ISGPSON.equalsIgnoreCase(action)){
+				if(!isGPSOn()){
+					callbackContext.error("GPS is Off");
+					return false;		
+				}else{
+					callbackContext.success("GPS is On");
+	 	 			return true;
+				}
 			}
 			callbackContext.success();
 	 	 	return true;
@@ -33,6 +42,14 @@ public class GPSMode extends CordovaPlugin {
 			callbackContext.error("Error " + e.getMessage());
 			return false;
 		}
+	}
+
+	public boolean isGPSOn(){
+	    String provider = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.LOCATION_PROVIDERS_ALLOWED);
+	    if(!provider.contains("gps")){ //if gps is disabled
+	        return false;
+	    }
+	    return true;
 	}
 
 	public void turnGPSOn()
