@@ -54,13 +54,13 @@ public class GPSMode extends CordovaPlugin {
 	// automatic turn off the gps
     public void turnGPSOff()
     {
-        String provider = Settings.Secure.getString(ctx.getContentResolver(), Settings.Secure.LOCATION_PROVIDERS_ALLOWED);
+        String provider = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.LOCATION_PROVIDERS_ALLOWED);
         if(provider.contains("gps")){ //if gps is enabled
             final Intent poke = new Intent();
             poke.setClassName("com.android.settings", "com.android.settings.widget.SettingsAppWidgetProvider");
             poke.addCategory(Intent.CATEGORY_ALTERNATIVE);
             poke.setData(Uri.parse("3")); 
-            this.ctx.sendBroadcast(poke);
+            context.sendBroadcast(poke);
         }
     }
 }
