@@ -8,6 +8,7 @@ import org.json.JSONException;
 
 import android.content.Context;
 import android.content.Intent;
+import android.location.Location;
 import android.location.LocationManager;
 import android.provider.Settings;
 import android.net.Uri;
@@ -16,7 +17,12 @@ import android.widget.Toast;
 public class GPSMode extends CordovaPlugin {
 	public static final String ACTION_ON = "on";
 	public static final String ACTION_OFF = "off"; 
-	public static final String ACTION_ISGPSON = "isGPSOn"; 
+	public static final String ACTION_ISGPSON = "isGPSOn";
+	public static final String ACTION_GETLOCATION="getLocation";
+
+	LocationManager locationManager=null;
+    Location location=null;
+
 	Context context=null;
 
 	@Override
@@ -39,6 +45,13 @@ public class GPSMode extends CordovaPlugin {
 					callbackContext.success("GPS is On");
 	 	 			return true;
 				}
+			}else if(ACTION_GETLOCATION.equalsIgnoreCase(action)){
+				 Location location1=getLocation();
+	            JSONObject locationObj=new JSONObject();
+	            locationObj.put("latitude",location1.getLatitude());
+	            locationObj.put("longitude",location1.getLongitude());
+	            callbackContext.success(locationObj.toString());
+	            return true;
 			}
 			callbackContext.success();
 	 	 	return true;
@@ -47,6 +60,19 @@ public class GPSMode extends CordovaPlugin {
 			return false;
 		}
 	}
+
+	public Location getLocation() {
+        try {
+            locationManager = (LocationManager) context
+                    .getSystemService(LocationManager.GPS_PROVIDER);
+            location=locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return location;
+    }
 
 	public boolean isGPSOn(){
 	    String provider = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.LOCATION_PROVIDERS_ALLOWED);
