@@ -66,7 +66,7 @@ public class GPSMode extends CordovaPlugin {
 	public Location getLocation() {
         try {
             locationManager = (LocationManager) context
-                    .getSystemService(LOCATION_SERVICE);
+                    .getSystemService("location");
             location=locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 
         } catch (Exception e) {
