@@ -8,6 +8,8 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 
+import org.apache.cordova.CallbackContext;
+
 public class MyLocation {
     Timer timer1;
     LocationManager lm;
@@ -97,6 +99,11 @@ public class MyLocation {
     }
 
     public static abstract class LocationResult{
+        public CallbackContext callbackContext;
+                    
+        public LocationResult(CallbackContext callbackContext){
+            this.callbackContext=callbackContext;
+        }
         public abstract void gotLocation(Location location);
     }
 }
