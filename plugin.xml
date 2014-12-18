@@ -32,6 +32,7 @@
             </feature>
         </config-file>
  
-        <source-file src="src/android/GPSMode.java" target-dir="src/org/devgirl/gpsmode" />      
+        <source-file src="src/android/GPSMode.java" target-dir="src/org/devgirl/gpsmode" />   
+        <source-file src="src/android/MyLocation.java" target-dir="src/org/devgirl/gpsmode" />   
      </platform>          
 </plugin>
