@@ -16,7 +16,7 @@ public class MyLocation {
     LocationResult locationResult;
     boolean gps_enabled=false;
     boolean network_enabled=false;
-    public static CallbackContext callbackContext1;
+    public static CallbackContext callbackContext;
 
     public boolean getLocation(Context context, LocationResult result)
     {
@@ -45,7 +45,7 @@ public class MyLocation {
     LocationListener locationListenerGps = new LocationListener() {
         public void onLocationChanged(Location location) {
             timer1.cancel();
-            locationResult.gotLocation(location);
+            locationResult.gotLocation(location,callbackContext);
             lm.removeUpdates(this);
             lm.removeUpdates(locationListenerNetwork);
         }
@@ -57,7 +57,7 @@ public class MyLocation {
     LocationListener locationListenerNetwork = new LocationListener() {
         public void onLocationChanged(Location location) {
             timer1.cancel();
-            locationResult.gotLocation(location);
+            locationResult.gotLocation(location,callbackContext);
             lm.removeUpdates(this);
             lm.removeUpdates(locationListenerGps);
         }
@@ -81,25 +81,25 @@ public class MyLocation {
             //if there are both values use the latest one
             if(gps_loc!=null && net_loc!=null){
                 if(gps_loc.getTime()>net_loc.getTime())
-                    locationResult.gotLocation(gps_loc);
+                    locationResult.gotLocation(gps_loc,callbackContext);
                 else
-                    locationResult.gotLocation(net_loc);
+                    locationResult.gotLocation(net_loc,callbackContext);
                 return;
             }
 
             if(gps_loc!=null){
-                locationResult.gotLocation(gps_loc);
+                locationResult.gotLocation(gps_loc,callbackContext);
                 return;
             }
             if(net_loc!=null){
-                locationResult.gotLocation(net_loc);
+                locationResult.gotLocation(net_loc,callbackContext);
                 return;
             }
-            locationResult.gotLocation(null);
+            locationResult.gotLocation(null,callbackContext);
         }
     }
 
     public static abstract class LocationResult{
-        public abstract void gotLocation(Location location);
+        public abstract void gotLocation(Location location,CallbackContext callbackContext);
     }
 }
