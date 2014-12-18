@@ -16,6 +16,7 @@ public class MyLocation {
     LocationResult locationResult;
     boolean gps_enabled=false;
     boolean network_enabled=false;
+    public static CallbackContext callbackContext;
 
     public boolean getLocation(Context context, LocationResult result)
     {
@@ -99,11 +100,6 @@ public class MyLocation {
     }
 
     public static abstract class LocationResult{
-        public CallbackContext callbackContext;
-                    
-        public LocationResult(CallbackContext callbackContext){
-            this.callbackContext=callbackContext;
-        }
         public abstract void gotLocation(Location location);
     }
 }

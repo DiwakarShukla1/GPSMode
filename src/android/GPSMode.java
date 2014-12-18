@@ -50,13 +50,8 @@ public class GPSMode extends CordovaPlugin {
 	 	 			return true;
 				}
 			}else if(ACTION_GETLOCATION.equalsIgnoreCase(action)){
-
-				MyLocation.LocationResult locationResult = new MyLocation.LocationResult(callbackContext){
-					public CallbackContext callbackContext;
-					
-					LocationResult(CallbackContext callbackContext){
-						this.callbackContext=callbackContext;
-					}
+				MyLocation.callbackContext=callbackContext;
+				MyLocation.LocationResult locationResult = new MyLocation.LocationResultID(){
 
            		@Override
             	public void gotLocation(Location location){
@@ -64,7 +59,7 @@ public class GPSMode extends CordovaPlugin {
             				JSONObject locationObj=new JSONObject();
 			            locationObj.put("latitude",location.getLatitude());
 			            locationObj.put("longitude",location.getLongitude());
-			            callbackContext.success(locationObj.toString());
+			            callbackContext.success(locationObj.toStsring());
 			            Toast.makeText(context,"Latitude : "+location.getLatitude()+", Longitude : "+location.getLongitude()+", Accurancy : "+location.getAccuracy(),Toast.LENGTH_LONG).show();	
             			}catch(JSONException je){
             				callbackContext.error("Error " + je.getMessage());
