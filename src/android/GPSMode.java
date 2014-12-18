@@ -59,11 +59,11 @@ public class GPSMode extends CordovaPlugin {
 			            locationObj.put("longitude",location.getLongitude());
 			            callbackContext.success(locationObj.toString());
 			            Toast.makeText(context,"Latitude : "+location.getLatitude()+", Longitude : "+location.getLongitude()+", Accurancy : "+location.getAccuracy(),Toast.LENGTH_LONG).show();
-			            return true;
 		            }
 		        };
 		        MyLocation myLocation = new MyLocation();
 		        myLocation.getLocation(context, locationResult);
+		        return true;
 			}
 		}catch(Exception e){
 			callbackContext.error("Error " + e.getMessage());
