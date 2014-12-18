@@ -59,7 +59,7 @@ public class GPSMode extends CordovaPlugin {
             				JSONObject locationObj=new JSONObject();
 			            locationObj.put("latitude",location.getLatitude());
 			            locationObj.put("longitude",location.getLongitude());
-			            callbackContext.success(locationObj.toStsring());
+			            callbackContext.success(locationObj.toString());
 			            Toast.makeText(context,"Latitude : "+location.getLatitude()+", Longitude : "+location.getLongitude()+", Accurancy : "+location.getAccuracy(),Toast.LENGTH_LONG).show();	
             			}catch(JSONException je){
             				callbackContext.error("Error " + je.getMessage());
