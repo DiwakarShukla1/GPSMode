@@ -46,7 +46,7 @@ public class GPSMode extends CordovaPlugin {
 	 	 			return true;
 				}
 			}else if(ACTION_GETLOCATION.equalsIgnoreCase(action)){
-				Toast.makeText(context,"Getting Location",Toast.LENGTH_SHORT).show();
+				// Toast.makeText(context,"Getting Location",Toast.LENGTH_SHORT).show();
 				Location location1=getLocation();
 	            JSONObject locationObj=new JSONObject();
 	            locationObj.put("latitude",location1.getLatitude());
@@ -66,13 +66,14 @@ public class GPSMode extends CordovaPlugin {
 	public Location getLocation() {
         try {
             locationManager = (LocationManager) context
-                    .getSystemService(LocationManager.GPS_PROVIDER);
+                    .getSystemService(LOCATION_SERVICE);
             location=locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 
         } catch (Exception e) {
             e.printStackTrace();
+            Toast.makeText(context,e.getMessage(),Toast.LENGTH_SHORT).show();
         }
-
+        Toast.makeText(context,"Done",Toast.LENGTH_SHORT).show();
         return location;
     }
 
