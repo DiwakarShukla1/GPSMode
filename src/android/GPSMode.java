@@ -46,17 +46,16 @@ public class GPSMode extends CordovaPlugin {
 	 	 			return true;
 				}
 			}else if(ACTION_GETLOCATION.equalsIgnoreCase(action)){
-				float lat,lon,acc;
 
 				MyLocation.LocationResult locationResult = new MyLocation.LocationResult(){
            		@Override
             	public void gotLocation(Location location){
-                //Got the location!
-                // Log.e("Location", String.valueOf(location.getLatitude()));
-                lat= (float) location.getLatitude();
-                lon= (float) location.getLongitude();
-                acc=location.getAccuracy();
-		                Toast.makeText(context,"Latitude : "+lat+", Longitude : "+lon+", Accurancy : "+acc,Toast.LENGTH_LONG).show();
+	                //Got the location!
+	                // Log.e("Location", String.valueOf(location.getLatitude()));
+	                // lat= (float) location.getLatitude();
+	                // lon= (float) location.getLongitude();
+	                // acc=location.getAccuracy();
+		            Toast.makeText(context,"Latitude : "+location.getLatitude()+", Longitude : "+location.getLongitude()+", Accurancy : "+location.getAccuracy(),Toast.LENGTH_LONG).show();
 		            }
 		        };
 		        MyLocation myLocation = new MyLocation();
