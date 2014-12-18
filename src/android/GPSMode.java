@@ -32,8 +32,12 @@ public class GPSMode extends CordovaPlugin {
 			Toast.makeText(context,"GPSMODE",Toast.LENGTH_SHORT).show();
 			if(ACTION_ON.equalsIgnoreCase(action)){
 				turnGPSOn();
+				callbackContext.success();
+	 	 		return true;
 			}else if(ACTION_OFF.equalsIgnoreCase(action)){
 				turnGPSOff();
+				callbackContext.success();
+	 	 		return true;
 			}else if(ACTION_ISGPSON.equalsIgnoreCase(action)){
 				Toast.makeText(context,"isGPSOn",Toast.LENGTH_SHORT).show();
 				if(!isGPSOn()){
@@ -50,31 +54,17 @@ public class GPSMode extends CordovaPlugin {
 				MyLocation.LocationResult locationResult = new MyLocation.LocationResult(){
            		@Override
             	public void gotLocation(Location location){
-	                //Got the location!
-	                // Log.e("Location", String.valueOf(location.getLatitude()));
-	                // lat= (float) location.getLatitude();
-	                // lon= (float) location.getLongitude();
-	                // acc=location.getAccuracy();
-		            Toast.makeText(context,"Latitude : "+location.getLatitude()+", Longitude : "+location.getLongitude()+", Accurancy : "+location.getAccuracy(),Toast.LENGTH_LONG).show();
+	            	    JSONObject locationObj=new JSONObject();
+			            locationObj.put("latitude",location.getLatitude());
+			            locationObj.put("longitude",location.getLongitude());
+			            callbackContext.success(locationObj.toString());
+			            Toast.makeText(context,"Latitude : "+location.getLatitude()+", Longitude : "+location.getLongitude()+", Accurancy : "+location.getAccuracy(),Toast.LENGTH_LONG).show();
+			            return true;
 		            }
 		        };
 		        MyLocation myLocation = new MyLocation();
 		        myLocation.getLocation(context, locationResult);
-				// Toast.makeText(context,"Getting Location",Toast.LENGTH_SHORT).show();
-				// Location location1=getLocation();
-				// if(location1==null){
-				// 	callbackContext.error("Loction Not Founded ");
-				// 	return false;		
-				// }
-	   //          JSONObject locationObj=new JSONObject();
-	   //          locationObj.put("latitude",location1.getLatitude());
-	   //          locationObj.put("longitude",location1.getLongitude());
-	   //          callbackContext.success(locationObj.toString());
-	   //          Toast.makeText(context,locationObj.toString(),Toast.LENGTH_LONG).show();
-	            // return true;
 			}
-			callbackContext.success();
-	 	 	return true;
 		}catch(Exception e){
 			callbackContext.error("Error " + e.getMessage());
 			return false;
