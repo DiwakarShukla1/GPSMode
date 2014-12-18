@@ -51,7 +51,7 @@ public class GPSMode extends CordovaPlugin {
 				}
 			}else if(ACTION_GETLOCATION.equalsIgnoreCase(action)){
 				MyLocation.callbackContext=callbackContext;
-				MyLocation.LocationResult locationResult = new MyLocation.LocationResultID(){
+				MyLocation.LocationResult locationResult = new MyLocation.LocationResult(){
 
            		@Override
             	public void gotLocation(Location location){
