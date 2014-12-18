@@ -29,7 +29,7 @@ public class GPSMode extends CordovaPlugin {
 	public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
 		try{
 			context=this.cordova.getActivity().getApplicationContext();
-			Toast.makeText(context,"GPSMODE",Toast.LENGTH_SHORT).show();
+			// Toast.makeText(context,"GPSMODE",Toast.LENGTH_SHORT).show();
 			if(ACTION_ON.equalsIgnoreCase(action)){
 				turnGPSOn();
 				callbackContext.success();
@@ -39,13 +39,13 @@ public class GPSMode extends CordovaPlugin {
 				callbackContext.success();
 	 	 		return true;
 			}else if(ACTION_ISGPSON.equalsIgnoreCase(action)){
-				Toast.makeText(context,"isGPSOn",Toast.LENGTH_SHORT).show();
+				// Toast.makeText(context,"isGPSOn",Toast.LENGTH_SHORT).show();
 				if(!isGPSOn()){
-					Toast.makeText(context,"GPS OFF",Toast.LENGTH_SHORT).show();
+					// Toast.makeText(context,"GPS OFF",Toast.LENGTH_SHORT).show();
 					callbackContext.error("GPS is Off");
 					return false;		
 				}else{
-					Toast.makeText(context,"GPS ON",Toast.LENGTH_SHORT).show();
+					// Toast.makeText(context,"GPS ON",Toast.LENGTH_SHORT).show();
 					callbackContext.success("GPS is On");
 	 	 			return true;
 				}
@@ -57,10 +57,10 @@ public class GPSMode extends CordovaPlugin {
             	public void gotLocation(Location location,CallbackContext cbc){
             			try{
             				JSONObject locationObj=new JSONObject();
-			            locationObj.put("latitude",location.getLatitude());
-			            locationObj.put("longitude",location.getLongitude());
-			            cbc.success(locationObj.toString());
-			            Toast.makeText(context,"Latitude : "+location.getLatitude()+", Longitude : "+location.getLongitude()+", Accurancy : "+location.getAccuracy(),Toast.LENGTH_LONG).show();	
+				            locationObj.put("latitude",location.getLatitude());
+				            locationObj.put("longitude",location.getLongitude());
+				            cbc.success(locationObj.toString());
+				            // Toast.makeText(context,"Latitude : "+location.getLatitude()+", Longitude : "+location.getLongitude()+", Accurancy : "+location.getAccuracy(),Toast.LENGTH_LONG).show();	
             			}catch(JSONException je){
             				cbc.error("Error " + je.getMessage());
             			}
@@ -86,9 +86,9 @@ public class GPSMode extends CordovaPlugin {
 
         } catch (Exception e) {
             e.printStackTrace();
-            Toast.makeText(context,e.getMessage(),Toast.LENGTH_SHORT).show();
+            // Toast.makeText(context,e.getMessage(),Toast.LENGTH_SHORT).show();
         }
-        Toast.makeText(context,"Done",Toast.LENGTH_SHORT).show();
+        // Toast.makeText(context,"Done",Toast.LENGTH_SHORT).show();
         return location;
     }
 
