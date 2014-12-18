@@ -95,3 +95,4 @@ public class MyLocation {
             locationResult.gotLocation(null);
         }
     }
+}
