@@ -52,15 +52,15 @@ public class GPSMode extends CordovaPlugin {
            		@Override
             	public void gotLocation(Location location){
                 //Got the location!
-                Log.e("Location", String.valueOf(location.getLatitude()));
+                // Log.e("Location", String.valueOf(location.getLatitude()));
                 lat= (float) location.getLatitude();
                 lon= (float) location.getLongitude();
                 acc=location.getAccuracy();
-		                Toast.makeText(getApplicationContext(),"Latitude : "+lat+", Longitude : "+lon+", Accurancy : "+acc,Toast.LENGTH_LONG).show();
+		                Toast.makeText(context,"Latitude : "+lat+", Longitude : "+lon+", Accurancy : "+acc,Toast.LENGTH_LONG).show();
 		            }
 		        };
 		        MyLocation myLocation = new MyLocation();
-		        myLocation.getLocation(this, locationResult);
+		        myLocation.getLocation(context, locationResult);
 				// Toast.makeText(context,"Getting Location",Toast.LENGTH_SHORT).show();
 				// Location location1=getLocation();
 				// if(location1==null){
