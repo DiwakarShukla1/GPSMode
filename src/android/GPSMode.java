@@ -48,6 +48,10 @@ public class GPSMode extends CordovaPlugin {
 			}else if(ACTION_GETLOCATION.equalsIgnoreCase(action)){
 				// Toast.makeText(context,"Getting Location",Toast.LENGTH_SHORT).show();
 				Location location1=getLocation();
+				if(location1==null){
+					callbackContext.error("Loction Not Founded ");
+					return false;		
+				}
 	            JSONObject locationObj=new JSONObject();
 	            locationObj.put("latitude",location1.getLatitude());
 	            locationObj.put("longitude",location1.getLongitude());
