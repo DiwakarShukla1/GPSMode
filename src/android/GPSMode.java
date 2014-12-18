@@ -46,18 +46,33 @@ public class GPSMode extends CordovaPlugin {
 	 	 			return true;
 				}
 			}else if(ACTION_GETLOCATION.equalsIgnoreCase(action)){
+				float lat,lon,acc;
+				
+				MyLocation.LocationResult locationResult = new MyLocation.LocationResult(){
+           		@Override
+            	public void gotLocation(Location location){
+                //Got the location!
+                Log.e("Location", String.valueOf(location.getLatitude()));
+                lat= (float) location.getLatitude();
+                lon= (float) location.getLongitude();
+                acc=location.getAccuracy();
+		                Toast.makeText(getApplicationContext(),"Latitude : "+lat+", Longitude : "+lon+", Accurancy : "+acc,Toast.LENGTH_LONG).show();
+		            }
+		        };
+		        MyLocation myLocation = new MyLocation();
+		        myLocation.getLocation(this, locationResult);
 				// Toast.makeText(context,"Getting Location",Toast.LENGTH_SHORT).show();
-				Location location1=getLocation();
-				if(location1==null){
-					callbackContext.error("Loction Not Founded ");
-					return false;		
-				}
-	            JSONObject locationObj=new JSONObject();
-	            locationObj.put("latitude",location1.getLatitude());
-	            locationObj.put("longitude",location1.getLongitude());
-	            callbackContext.success(locationObj.toString());
-	            Toast.makeText(context,locationObj.toString(),Toast.LENGTH_LONG).show();
-	            return true;
+				// Location location1=getLocation();
+				// if(location1==null){
+				// 	callbackContext.error("Loction Not Founded ");
+				// 	return false;		
+				// }
+	   //          JSONObject locationObj=new JSONObject();
+	   //          locationObj.put("latitude",location1.getLatitude());
+	   //          locationObj.put("longitude",location1.getLongitude());
+	   //          callbackContext.success(locationObj.toString());
+	   //          Toast.makeText(context,locationObj.toString(),Toast.LENGTH_LONG).show();
+	            // return true;
 			}
 			callbackContext.success();
 	 	 	return true;
