@@ -95,4 +95,8 @@ public class MyLocation {
             locationResult.gotLocation(null);
         }
     }
+
+    public static abstract class LocationResult{
+        public abstract void gotLocation(Location location);
+    }
 }
