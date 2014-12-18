@@ -13,7 +13,6 @@ import android.location.LocationManager;
 import android.provider.Settings;
 import android.net.Uri;
 import android.widget.Toast;
-import org.devgirl.gpsmode.MyLocation;
 
 public class GPSMode extends CordovaPlugin {
 	public static final String ACTION_ON = "on";
