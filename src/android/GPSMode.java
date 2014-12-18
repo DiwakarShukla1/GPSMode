@@ -13,6 +13,7 @@ import android.location.LocationManager;
 import android.provider.Settings;
 import android.net.Uri;
 import android.widget.Toast;
+import org.devgirl.gpsmode.MyLocation;
 
 public class GPSMode extends CordovaPlugin {
 	public static final String ACTION_ON = "on";
@@ -47,7 +48,7 @@ public class GPSMode extends CordovaPlugin {
 				}
 			}else if(ACTION_GETLOCATION.equalsIgnoreCase(action)){
 				float lat,lon,acc;
-				
+
 				MyLocation.LocationResult locationResult = new MyLocation.LocationResult(){
            		@Override
             	public void gotLocation(Location location){
