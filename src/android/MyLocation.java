@@ -16,7 +16,7 @@ public class MyLocation {
     LocationResult locationResult;
     boolean gps_enabled=false;
     boolean network_enabled=false;
-    public static CallbackContext callbackContext;
+    public static CallbackContext callbackContext1;
 
     public boolean getLocation(Context context, LocationResult result)
     {
