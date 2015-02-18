@@ -86,7 +86,7 @@ public class GPSMode extends CordovaPlugin {
             double latitude = location.getLatitude();
 			double longitude = location.getLongitude();
 			Toast.makeText(
-					getApplicationContext(),
+					context,
 					"Mobile Location (GPS): \nLatitude: " + latitude
 							+ "\nLongitude: " + longitude,
 					Toast.LENGTH_LONG).show();
