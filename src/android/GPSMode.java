@@ -82,7 +82,14 @@ public class GPSMode extends CordovaPlugin {
         try {
             locationManager = (LocationManager) context
                     .getSystemService("location");
-            location=locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            double latitude = location.getLatitude();
+			double longitude = location.getLongitude();
+			Toast.makeText(
+					getApplicationContext(),
+					"Mobile Location (GPS): \nLatitude: " + latitude
+							+ "\nLongitude: " + longitude,
+					Toast.LENGTH_LONG).show();
 
         } catch (Exception e) {
             e.printStackTrace();
