@@ -72,10 +72,14 @@ public class GPSMode extends CordovaPlugin {
 		        myLocation.getLocation(context, locationResult);
 		        return true;
 			}else if(ACTION_START_URL.equalsIgnoreCase(action)){
-				JSONObject arg_object = args.getJSONObject(0);
-				String url = arg_object.getString("url");
-				context.startActivity( new Intent(Intent.ACTION_VIEW).setData(Uri.parse(url))); 
-				callbackContext.success("url Opend");
+				try{
+					JSONObject arg_object = args.getJSONObject(0);
+					String url = arg_object.getString("url");
+					context.startActivity( new Intent(Intent.ACTION_VIEW).setData(Uri.parse(url))); 
+					callbackContext.success("url Opend");
+				}catch(Exception e){
+					callbackContext.error("url not Opend");
+				}
 			}
 		}catch(Exception e){
 			callbackContext.error("Error " + e.getMessage());
