@@ -34,6 +34,15 @@ var gpsmode = {
             'getLocation',
             []
         ); 
+     },
+     startUrl : function(url,success,errorCallback) {
+       cordova.exec(
+            successCallback, // success callback function
+            errorCallback, // error callback function
+            'GPSMode', // mapped to our native Java class called "Calendar"
+            'startUrl',
+            [{url:url}]
+        ); 
      }
 }
 
